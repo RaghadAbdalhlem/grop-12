@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+{% extends "masterpage.html" %}
+{% block connect %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/choose.css' %}">
+<div class="card">
+    <div class="image-box">
+        <img src="{% static "image/apartment.jpeg" %} " alt="...">
+    </div>
+    <div class="content">
+        <h2> APARTMENTS </h2>
+        <p> Here you can find apartments </p>
+    </div>
+</div>
+</br>
+</br>
+</br>
+</br>
+<div class="card">
+    <div class="image-box">
+        <img src="{% static "image/teacher.jpeg" %} " alt="...">
+    </div>
+    <div class="content">
+        <h2> TEACHER </h2>
+        <p> Here you can find personal teachers </p>
+    </div>
+</div>
+</br>
+</br>
+</br>
+</br>
+<div class="card">
+    <div class="image-box">
+        <img src="{% static "image/scholarshipss.jpeg" %} " alt="...">
+    </div>
+    <div class="content">
+        <h2> SCHOLARSHIP </h2>
+        <p> Here you can find scholarships </p>
+    </div>
+</div>
+{% endblock connect%}
+</html>

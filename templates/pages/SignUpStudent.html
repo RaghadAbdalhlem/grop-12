@@ -1,0 +1,41 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+{% extends "masterpage.html" %}
+{% block connect %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/SignUP.css' %}">
+</br>
+</br>
+</br>
+</br>
+<body>
+	<form class="box" action="ToSignUp.html" method="POST">
+		
+		<h1>SignUp</h1>
+		{% csrf_token %}
+		<input type="text" name="Username" placeholder="Username">   
+		<input type="text" name="Email" placeholder="Email">   
+		<input type="Password" name="Password" placeholder="Password">  
+		<input type="Password" name="Re_Password" placeholder="Re_Password">  
+	
+		<input type="submit" name="SignUp" value="SignUp">  
+	</form>
+</body>
+
+	
+
+</html>
+
+
+
+
+
+
+
+
+{% endblock connect %}
+
