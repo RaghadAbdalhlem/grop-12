@@ -16,12 +16,14 @@ def masterpage(request):
 
 
 def SignUpAdmin(request):
+     form=SignUpForm
      username=request.POST.get('Username')
      email=request.POST.get('Email')
      password=request.POST.get('Password')
      re_Password=request.POST.get('Re_Password')
      data=SignUp(Username=username,Email=email,Password=password,Re_Password=re_Password)
      data.save()
+     conaxt=fo
      return render(request,'pages/SignUpAdmin.html',{'SignUpForm':SignUpForm})
            
        
@@ -36,7 +38,7 @@ def SignUpStudents(request):
         # Call the SignUp function with the correct arguments
         new_SignUp = SignUp(Username=Username, Email=Email, Password=Password, Re_Password=Re_Password)
         #data= SignUp(Username=Username, Email=Email, Password1=Password1, RE_Password=RE_Password)
-        #data.save();
+        # data.save();
         new_SignUp.save()
 
         return render(request,'pages\SignUpStudent.html')
