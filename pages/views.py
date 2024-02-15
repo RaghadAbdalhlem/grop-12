@@ -26,9 +26,7 @@ def SignUpAdmin(request):
      conaxt=fo
      return render(request,'pages/SignUpAdmin.html',{'SignUpForm':SignUpForm})
            
-       
-def update_student():
-     pass
+
 
 def SignUpStudents(request):
     if request.method == "POST":
