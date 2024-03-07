@@ -89,3 +89,5 @@ def oneapartment(request):
 
 def privateclass(request):
      return render(request,'pages/privateclass.html')
+ def aboutus(request):
+    return render(request,'pages/aboutus.html')
