@@ -28,4 +28,16 @@ class AboutUsPageTest(TestCase):
         
 
 
-# Create your tests here.
+
+
+class MorePageTest(TestCase):
+    def test_more_page(self):
+        # יצירת בקשת HTTP GET לדף "More"
+        request = HttpRequest()
+        response = More(request)
+
+        # בדיקה שהפונקציה חזרה תשובת HTTP 200 (OK)
+        self.assertEqual(response.status_code, 200)
+
+        # בדיקה שהתבצעה הפניה לתבנית 'pages/More.html'
+        self.assertTemplateUsed(response, 'pages/More.html')
