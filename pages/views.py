@@ -13,6 +13,9 @@ from .forms import SignUpForm
 
 def masterpage(request):
     return render(request,'masterpage.html')
+def more(request):
+    return render(request,'more.html')
+    
 
 
 def SignUpAdmin(request):

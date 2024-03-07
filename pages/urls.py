@@ -11,6 +11,8 @@ urlpatterns = [
     path('apartments.html',views.apartments,name='apartments'),
     path('oneapartment.htmml',views.oneapartment,name='oneapartment'),
     path('privateclass.html',views.privateclass,name='privateclass'),
+    path('privateclass.html',views.privateclass,name='privateclass'),
+    path('more.html',views.more,name='more'),
     path('aboutus.html',views.aboutus,name='aboutus'),
-    #1111
+
 ]
