@@ -47,3 +47,20 @@ class Private_Classes(models.Model):
     content=models.CharField(max_length=100,null=True,blank=True)
     img=models.ImageField(default="static/image/personalclass.png")
 
+
+class Catigory(models.Model):
+    name=models.CharField(max_length=100)
+    def _str_(self):
+        return self.name
+
+
+
+
+
+
+
+class scholarship(model.Model):
+    id = models.AutoField(primary_key=True)
+    category=models.ForeignKey(Catigory,on_delete=models.CASCADE,default=True,null=False)
+    contant=models.CharField(max_length=1000)
+    phonenumber=models.CharField(max_length=10,null=True)   

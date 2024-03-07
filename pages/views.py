@@ -9,6 +9,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from .models import SignUp
 from .models import Apartments
+from .models import scholarship
 from .forms import SignUpForm
 
 def masterpage(request):
@@ -89,3 +90,6 @@ def oneapartment(request):
 
 def privateclass(request):
      return render(request,'pages/privateclass.html')
+def scolarshipswith(request):
+     soft=scholarship.objects.all()
+     return render(request,'pages/scolarshipswith.html',{'soft':soft})
