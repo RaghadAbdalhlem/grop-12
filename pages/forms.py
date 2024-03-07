@@ -1,5 +1,7 @@
 from django import forms
 from .models import SignUp
+from django.forms import ModelForm
+from .models import Apartments
 
 
 class SignUpForm(forms.Form):
@@ -30,3 +32,8 @@ class SignUpForm(forms.Form):
     #def __str__(self):
        # return self.Username
         
+
+class addApartmentform(ModelForm):  
+    class Meta:
+        model = Apartments
+        fields =['price','rooms','area','content','phonenumber']

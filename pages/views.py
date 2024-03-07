@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate
 from .models import SignUp
 from .models import Apartments
 from .forms import SignUpForm
+from .forms import addApartmentform
 
 def masterpage(request):
     return render(request,'masterpage.html')
@@ -92,5 +93,17 @@ def oneapartment(request):
 
 def privateclass(request):
      return render(request,'pages/privateclass.html')
- def aboutus(request):
+def aboutus(request):
     return render(request,'pages/aboutus.html')
+
+
+def addapartment(request):
+     form=addApartmentform()
+     if request.method=='POST':
+          form=addApartmentform(request.POST)
+          if form.is_valid():
+               form.save()
+               return redirect('addclasses')
+   
+     conaxt={'form':form}
+     return render(request,'pages/addapartment.html',conaxt)
