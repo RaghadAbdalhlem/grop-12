@@ -9,6 +9,15 @@ from .forms import addApartmentform
 from django.contrib import messages  
 from django.core.exceptions import ValidationError  
 from django.urls import reverse  
+from django.shortcuts import render
+from django.template import TemplateDoesNotExist, loader
+from .models import Scholarship  # Assuming your model is in the same app directory
+
+from django.test import TestCase
+from django.urls import reverse
+from django.http import HttpRequest
+from .models import scholarship
+from .views import scholarshipswith
 
 from .models import Apartment  
 from .forms import AddApartmentForm  
@@ -173,3 +182,42 @@ def test_addapartment_post_invalid(client):
     assert form.is_bound  
     assert form.errors  
 
+class ScholarshipsWithPageTest(TestCase):
+
+        self.scholarship1 = scholarship.objects.create(name="Scholarship 1", description="Description for Scholarship 1")
+        self.scholarship2 = scholarship.objects.create(name="Scholarship 2", description="Description for Scholarship 2")
+
+def test_scholarshipswith_page(self):
+        
+        request = HttpRequest()
+        response = scholarshipswith(request)
+
+        self.assertEqual(response.status_code, 200)
+
+        self.assertTemplateUsed(response, 'pages/scholarshipswith.html')
+
+        self.assertIn(self.scholarship1, response.context['soft'])
+        self.assertIn(self.scholarship2, response.context['soft'])
+def test_scholarshipswith_with_scholarships():
+    scholarship1 = Scholarship.objects.create(title="Test Scholarship 1", description="This is a test scholarship.")
+    scholarship2 = Scholarship.objects.create(title="Test Scholarship 2", description="This is another test scholarship.")
+    request = type('Request', (object,), {'META': {}})  
+    response = scholarshipswith(request)
+    assert response.template_name == 'pages/scholarshipswith.html'
+    context = response.context_data
+    assert context['soft'].count() == 2 
+    assert context['soft'][0].title == scholarship1.title 
+def setUpTestData(cls):
+        scholarship.objects.create(name='Scholarship 1', description='Description for Scholarship 1')
+        scholarship.objects.create(name='Scholarship 2', description='Description for Scholarship 2')
+
+def test_scholarshipswith_page(self):
+        request = HttpRequest()
+        response = scholarshipswith(request)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'pages/scholarshipswith.html')
+        self.assertTrue('soft' in response.context)
+        scholarships_from_context = response.context['soft']
+        self.assertEqual(len(scholarships_from_context), 2)
+        self.assertIn('Scholarship 1', [scholarship.name for scholarship in scholarships_from_context])
+        self.assertIn('Scholarship 2', [scholarship.name for scholarship in scholarships_from_context])
