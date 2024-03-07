@@ -32,12 +32,19 @@ class AboutUsPageTest(TestCase):
 
 class MorePageTest(TestCase):
     def test_more_page(self):
-        # יצירת בקשת HTTP GET לדף "More"
         request = HttpRequest()
         response = More(request)
-
-        # בדיקה שהפונקציה חזרה תשובת HTTP 200 (OK)
         self.assertEqual(response.status_code, 200)
-
-        # בדיקה שהתבצעה הפניה לתבנית 'pages/More.html'
         self.assertTemplateUsed(response, 'pages/More.html')
+        self.assertTrue('something' in response.context)
+        self.assertIsNotNone(response.context['something'])
+        
+def test_More():
+    request = type('Request', (object,), {'META': {'REQUEST_METHOD': 'GET'}})
+    response = More(request)
+    assert response.template_name == 'pages/More.html'
+    assert response.status_code == 200
+    try:
+        loader.get_template(response.template_name)
+    except TemplateDoesNotExist:
+        assert False, 'התבנית לא קיימת'
