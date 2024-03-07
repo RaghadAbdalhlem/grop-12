@@ -107,3 +107,7 @@ def addapartment(request):
    
      conaxt={'form':form}
      return render(request,'pages/addapartment.html',conaxt)
+ 
+def scolarshipswith(request):
+     soft=scholarship.objects.all()
+     return render(request,'pages/scolarshipswith.html',{'soft':soft})
