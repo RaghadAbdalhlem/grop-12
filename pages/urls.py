@@ -13,5 +13,6 @@ urlpatterns = [
     path('privateclass.html',views.privateclass,name='privateclass'),
     path('privateclass.html',views.privateclass,name='privateclass'),
     path('more.html',views.more,name='more'),
+    path('aboutus.html',views.aboutus,name='aboutus'),
 
 ]

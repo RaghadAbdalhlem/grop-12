@@ -30,7 +30,8 @@ def SignUpAdmin(request):
      return render(request,'pages/SignUpAdmin.html',{'SignUpForm':SignUpForm})
            
        
-
+def update_student():
+     pass
 
 def SignUpStudents(request):
     if request.method == "POST":
@@ -91,3 +92,5 @@ def oneapartment(request):
 
 def privateclass(request):
      return render(request,'pages/privateclass.html')
+ def aboutus(request):
+    return render(request,'pages/aboutus.html')
