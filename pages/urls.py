@@ -16,5 +16,7 @@ urlpatterns = [
     path('aboutus.html',views.aboutus,name='aboutus'),
     path('addapartment.html',views.addapartment,name='addapartment'),
     path('scolarshipswith.html',views.scolarshipswith,name='scolarships'),
+    path('SignUpUser.html',views.SignUpUser,name='SignUpUser'),
+    path('ToSignUp.html',views.ToSignUp,name='ToSignUp'),
 
 ]
