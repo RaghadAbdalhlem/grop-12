@@ -111,3 +111,97 @@ def addapartment(request):
 def scolarshipswith(request):
      soft=scholarship.objects.all()
      return render(request,'pages/scolarshipswith.html',{'soft':soft})
+
+def SignUpUser(request):
+    form = CreatUserForm()
+    if request.method == 'POST':
+        form = CreatUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            try:
+              group =  Group.objects.get(name='Users')
+            except ObjectDoesNotExist:
+                group=None
+            user.groups.add(group)
+            messages.success(request, 'Account was created for ' + username)
+            return redirect('Loginuser')
+    context = {'form': form}
+    return render(request, 'pages/SignUpUser.html', context)
+
+
+def Loginuser(request):
+    if request.method == 'POST':
+        Username = request.POST.get('username')
+        Password = request.POST.get('password')
+        user = authenticate(request, username=Username, password=Password)
+        if user is not None:
+            users_in_group = Group.objects.get(name='Users').user_set.all()
+            if user in users_in_group:
+                login(request, user)
+                return redirect('forusers')
+            else:
+                messages.info(request, 'username OR password incorrert')
+        else:
+            messages.info(request, 'username OR password incorrert')
+    context = {}
+    return render(request, 'pages/Loginuser.html', context)
+
+# def SignUpAdmin(request):
+#      form=SignUpForm()
+#      # username=request.POST.get('Username')
+#      # email=request.POST.get('Email')
+#      # password=request.POST.get('Password')
+#      # re_Password=request.POST.get('Re_Password')
+#      if request.method=='POST':
+#           form=SignUpForm(request.POST)
+
+#           if form.is_valid():
+#                form.save()
+#                return redirect('SignUpStudent')
+#     # data=SignUp(Username=username,Email=email,Password=password,Re_Password=re_Password)
+#      #data.save()
+#      conaxt={'form':form}
+#      return render(request,'pages/SignUpAdmin.html',conaxt)
+
+
+
+# def SignUpUser(request):
+#      form=SignUpForm()
+  
+#      if request.method=='POST':
+#           form=SignUpForm(request.POST)
+
+#           if form.is_valid():
+#                form.save()
+#                return redirect('SignUpStudent')
+   
+#      conaxt={'form':form}
+#      return render(request,'pages/SignUpUser.html',conaxt)
+
+#         if request.method == 'POST':
+#           coursename=request.POST['coursename']
+#           teachername=request.POST['teachername']
+#           techerphonenumber=request.POST['teacherphonenumber']
+#           content=request.POST['content']
+              	
+        
+
+#           new= addsoftwarclasses(coursename=coursename,teachername=teachername,techerphonenumber=techerphonenumber,content=content)   
+#           new.save()   
+# ################################################
+#      submitted = False
+#      if request.method == "POST":
+#               form=addsoftwarclasses(request.POST)
+#               if form.is_valid():
+#                    form.save()
+#                    return HttpResponseRedirect('pages/addsoftwarclasses?submitted=True')
+#      else:
+#              form =addsoftwarclasses 
+#              if 'submitted' in request.GET:
+#                    submitted=True
+#      return render(request, 'pages/addsoftwarclasses.html',{'form':form,'submitted':submitted})
+#      #####################################
+
+ 
+
