@@ -15,6 +15,7 @@ urlpatterns = [
     path('more.html',views.more,name='more'),
     path('aboutus.html',views.aboutus,name='aboutus'),
     path('addapartment.html',views.addapartment,name='addapartment'),
+    path('scolarshipswith.html',views.scolarshipswith,name='scolarships'),
 
     # path('adminapartments.html',views.adminapartments,name='adminapartments'),
     # path('forstudentsusers.html',views.forstudentsusers,name='forstudentsusers'),
