@@ -17,4 +17,11 @@ urlpatterns = [
     path('addapartment.html',views.addapartment,name='addapartment'),
     path('scolarshipswith.html',views.scolarshipswith,name='scolarships'),
 
-]
+    # path('adminapartments.html',views.adminapartments,name='adminapartments'),
+    # path('forstudentsusers.html',views.forstudentsusers,name='forstudentsusers'),
+    # path('departmentcourses.html',views.departmentcourses,name='departmentcourses'),
+    # path('showSoftwarclasses.html',views.showSoftwarclasses,name="showSoftwarclasses"),
+    # path('showchemicalclasses.html',views.showchemicalclasses,name="showchemicalclasses"),
+    # path('showmechanicalclasses.html',views.showmechanicalclasses,name="showmechanicalclasses"),
+    # path('showelectricclasses.html',views.showelectricclasses,name="showelectricclasses"),
+    # path('showcivilclasses.html',views.showcivilclasses,name="showcivilclasses"),
