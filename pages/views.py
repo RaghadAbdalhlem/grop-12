@@ -110,37 +110,37 @@ def addapartment(request):
  
  
  
- def adminapartments(request):
-     soft=Apartments.objects.all()
-     return render(request,'pages/adminapartments.html',{'soft':soft})
+#  def adminapartments(request):
+#      soft=Apartments.objects.all()
+#      return render(request,'pages/adminapartments.html',{'soft':soft})
  
  
- def forstudentsusers(request):
-     return render(request,'pages/forstudentsusers.html') 
+#  def forstudentsusers(request):
+#      return render(request,'pages/forstudentsusers.html') 
  
- def departmentcourses(request):
-    return render(request,'pages/departmentcourses.html')
+#  def departmentcourses(request):
+#     return render(request,'pages/departmentcourses.html')
 
-def showSoftwarclasses(request):
-     soft=PrivateClasses.objects.all()
-     return render(request,'pages/showSoftwarclasses.html',{'soft':soft})
+# def showSoftwarclasses(request):
+#      soft=PrivateClasses.objects.all()
+#      return render(request,'pages/showSoftwarclasses.html',{'soft':soft})
 
-def showchemicalclasses(request):
-     soft=PrivateChemicalClasses.objects.all()
-     return render(request,'pages/showchemicalclasses.html',{'soft':soft})
-
-
-def showmechanicalclasses(request):
-     soft=PrivateMechanicalClasses.objects.all()
-     return render(request,'pages/showmechanicalclasses.html',{'soft':soft})
+# def showchemicalclasses(request):
+#      soft=PrivateChemicalClasses.objects.all()
+#      return render(request,'pages/showchemicalclasses.html',{'soft':soft})
 
 
-def showelectricclasses(request):
-     soft=PrivateElectricClasses.objects.all()
-     return render(request,'pages/showelectricclasses.html',{'soft':soft})
+# def showmechanicalclasses(request):
+#      soft=PrivateMechanicalClasses.objects.all()
+#      return render(request,'pages/showmechanicalclasses.html',{'soft':soft})
+
+
+# def showelectricclasses(request):
+#      soft=PrivateElectricClasses.objects.all()
+#      return render(request,'pages/showelectricclasses.html',{'soft':soft})
 
 
 
-def showcivilclasses(request):
-     soft=PrivateCivilClasses.objects.all()
-     return render(request,'pages/showcivilclasses.html',{'soft':soft})
+# def showcivilclasses(request):
+#      soft=PrivateCivilClasses.objects.all()
+#      return render(request,'pages/showcivilclasses.html',{'soft':soft})
