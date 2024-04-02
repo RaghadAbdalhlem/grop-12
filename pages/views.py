@@ -29,7 +29,23 @@ def SignUpAdmin(request):
      data.save()
      conaxt=fo
      return render(request,'pages/SignUpAdmin.html',{'SignUpForm':SignUpForm})
-           
+
+def Logiadmin(request):
+    if request.method == 'POST':
+        Username = request.POST.get('username')
+        Password = request.POST.get('password')
+        user = authenticate(request, username=Username, password=Password)
+        if user is not None:
+            users_in_group = Group.objects.get(name='Admin').user_set.all()
+            if user in users_in_group:
+                login(request, user)
+                return redirect('foradmin')
+            else:
+                messages.info(request, 'username OR password incorrert')
+        else:
+            messages.info(request, 'username OR password incorrert')
+    context = {}
+    return render(request, 'pages/Loginadmin.html', context)
        
 def update_student():
      pass
@@ -204,4 +220,17 @@ def Loginuser(request):
 #      #####################################
 
  
+def showscholarships(request):
+     # soft=scholarship.objects.all()
+     #,{'soft':soft}
+     return render(request,'pages/showscholarships.html')
 
+
+def scholarshipswith(request):
+      soft=scholarship.objects.all()
+     
+      return render(request,'pages/scholarshipswith.html',{'soft':soft})
+
+def scholarshipswithout(request):
+     soft=scholarship.objects.all()
+     return render(request,'pages/scholarshipswithout.html',{'soft':soft})

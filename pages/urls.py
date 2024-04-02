@@ -18,6 +18,11 @@ urlpatterns = [
     path('scolarshipswith.html',views.scolarshipswith,name='scolarships'),
     path('SignUpUser.html',views.SignUpUser,name='SignUpUser'),
     path('ToSignUp.html',views.ToSignUp,name='ToSignUp'),
+    path('Loginadmin.html',views.Logiadmin,name='Loginadmin'),
+    path('showscholarships.html',views.showscholarships,name='showscholarships'),
+    path('scholarshipswith.html',views.scholarshipswith,name='scholarshipswith'),
+    path('scholarshipswithout.html',views.scholarshipswithout,name='scholarshipswithout'),
+    
 
     # path('adminapartments.html',views.adminapartments,name='adminapartments'),
     # path('forstudentsusers.html',views.forstudentsusers,name='forstudentsusers'),
