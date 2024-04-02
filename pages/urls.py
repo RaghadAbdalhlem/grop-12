@@ -22,7 +22,16 @@ urlpatterns = [
     path('showscholarships.html',views.showscholarships,name='showscholarships'),
     path('scholarshipswith.html',views.scholarshipswith,name='scholarshipswith'),
     path('scholarshipswithout.html',views.scholarshipswithout,name='scholarshipswithout'),
-    
+    path('apartmentsprice.html',views.apartmentsprice,name='apartmentsprice'),
+    path('apartmentsroom.html',views.apartmentsroom,name='apartmentsroom'),
+    path('apartmentarea.html',views.apartmentarea,name='apartmentarea'),
+    path('addclasses.html',views.addclasses,name='addclasses'),
+    path('addsoftwarclasses.html',views.addsoftwarclasses,name="addsoftwarclasses"),
+    path('addelectricclasses.html',views.addelectricclasses,name="addelectricclasses"),
+    path('forusers.html',views.forusers,name='forusers'),
+    path('ADDING.html',views.ADDING,name='ADDING'),
+    path('wichlogin.html',views.wichlogin,name='wichlogin'),
+    path('signorlog.html',views.signorlog,name='signorlog'),
 
     # path('adminapartments.html',views.adminapartments,name='adminapartments'),
     # path('forstudentsusers.html',views.forstudentsusers,name='forstudentsusers'),

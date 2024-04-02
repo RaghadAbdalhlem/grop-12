@@ -234,3 +234,41 @@ def scholarshipswith(request):
 def scholarshipswithout(request):
      soft=scholarship.objects.all()
      return render(request,'pages/scholarshipswithout.html',{'soft':soft})
+
+
+def apartmentarea(request):
+
+
+
+  if request.method=="POST":
+       searched=request.POST['searched']
+       apart=Apartments.objects.filter(area=searched)
+
+       #apart=Apartments.objects.all()
+       return render(request,'pages/apartmentarea.html',{'searched':searched,'apart':apart})
+  else:
+        return render(request, 'pages/apartmentarea.html')
+
+
+
+def apartmentsprice (request):
+
+      if request.method=="POST":
+       searched=request.POST['searched']
+       apart=Apartments.objects.filter(price=searched)
+
+       #apart=Apartments.objects.all()
+       return render(request,'pages/apartmentsprice.html',{'searched':searched,'apart':apart})
+      else:
+        return render(request, 'pages/apartmentsprice.html')
+def apartmentsroom (request):
+
+      if request.method=="POST":
+       searched=request.POST['searched']
+       apart=Apartments.objects.filter(rooms=searched)
+
+       #apart=Apartments.objects.all()
+       return render(request,'pages/apartmentsroom.html',{'searched':searched,'apart':apart})
+      else:
+        return render(request, 'pages/apartmentsroom.html')
+      
