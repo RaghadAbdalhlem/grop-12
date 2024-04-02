@@ -271,4 +271,32 @@ def apartmentsroom (request):
        return render(request,'pages/apartmentsroom.html',{'searched':searched,'apart':apart})
       else:
         return render(request, 'pages/apartmentsroom.html')
-      
+
+
+def updateapartment(request,pk):
+     apartment=Apartments.objects.get(id=pk)
+     form= updateApartmentform(request.POST or None , instance=apartment )
+     if form.is_valid():
+         form.save()
+         return redirect('adminapartments')
+     return render (request,'pages/updateapartment.html',{'form':form})
+
+
+def updatescholarship(request,pk):
+     scho=scholarship.objects.get(id=pk)
+     form= updatescholarshipform(request.POST  , instance=scho )
+
+     if form.is_valid():
+         form.save()
+         return redirect('adminscholarship')
+     return render (request,'pages/updatescholarship.html',{'form':form})
+
+
+def updatesoftwar(request,pk):
+     scho=PrivateClasses.objects.get(id=pk)
+     form= updatesoftwarform(request.POST or None  , instance=scho )
+
+     if form.is_valid():
+         form.save()
+         return redirect('adminsoftwar')
+     return render (request,'pages/updatesoftwar.html',{'form':form})
