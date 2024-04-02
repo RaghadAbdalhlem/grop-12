@@ -45,7 +45,13 @@ path('showchemicalclasses.html',views.showchemicalclasses,name="showchemicalclas
 path('showmechanicalclasses.html',views.showmechanicalclasses,name="showmechanicalclasses"),
 path('showelectricclasses.html',views.showelectricclasses,name="showelectricclasses"),
 path('showcivilclasses.html',views.showcivilclasses,name="showcivilclasses"),
-         
+  path('addcivilclasses.html',views.addcivilclasses,name="addcivilclasses"),
+path('addchemicalclasses.html',views.addchemicalclasses,name="addchemicalclasses"),
+path('addmechanicalclasses.html',views.addmechanicalclasses,name="addmechanicalclasses"),
+path('addscholarship.html',views.addscholarship,name="addscholarship"),
+path('forstudentsusers.html',views.forstudentsusers,name='forstudentsusers'),
+path('Loginstudent.html',views.Loginstudent,name='Loginstudent'),
+path('foradmin.html',views.foradmin,name='foradmin'),     
       
     # path('adminapartments.html',views.adminapartments,name='adminapartments'),
     # path('forstudentsusers.html',views.forstudentsusers,name='forstudentsusers'),
