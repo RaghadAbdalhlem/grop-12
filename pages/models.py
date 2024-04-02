@@ -47,3 +47,17 @@ class Private_Classes(models.Model):
     content=models.CharField(max_length=100,null=True,blank=True)
     img=models.ImageField(default="static/image/personalclass.png")
 
+
+class SignUp(models.Model):
+
+
+    Username=models.CharField(max_length=100,null=True,blank=True)
+    Email=models.CharField(max_length=100,null=True,blank=True)
+    Password=models.CharField(max_length=100,null=True,blank=True)
+    Re_Password=models.CharField(max_length=100,null=True,blank=True)
+
+
+    def __str__(self):
+         return self.Username
+   
+
