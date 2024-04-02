@@ -11,6 +11,19 @@ from .models import SignUp
 from .models import Apartments
 from .forms import SignUpForm
 from .forms import addApartmentform
+from django.shortcuts import redirect
+from .forms import addclassesform,addelectricclassesform,addcivilclassesform,addchemicalclassesform,addscholarshipform,addmechanicalclassesform,addApartmentform,addscholarshipform,updateApartmentform,updatescholarshipform,updatesoftwarform,updatecivilform,updateelectricform,updatechemicalform,updatemechanicalform
+from .models import PrivateMechanicalClasses,PrivateCivilClasses,PrivateChemicalClasses,PrivateElectricClasses,PrivateClasses,scholarship
+from .filters import PrivateClassesFilter
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.models import Group
+from django.contrib.auth import logout,login
+from django.contrib.auth.forms import UserCreationForm
+from .models import SignUp
+from .forms import CreatUserForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib import messages
 
 def masterpage(request):
     return render(request,'masterpage.html')
