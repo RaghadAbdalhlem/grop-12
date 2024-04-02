@@ -60,4 +60,72 @@ class SignUp(models.Model):
     def __str__(self):
          return self.Username
    
+     coursename=models.CharField(max_length=50,null=True,blank=True)
+     teachername=models.CharField(max_length=50,null=True,blank=True)
+     teacherphonenumber=models.CharField(max_length=50,null=True,blank=True)
+     content=models.CharField(max_length=100,null=True,blank=True)
+        #img=models.ImageField(default="static/image/personalclass.png")
+     def __str__(self):
+        return self.coursename   
+    
+
+
+
+    
+class PrivateCivilClasses(models.Model):
+
+    #departmentcours= models.CharField(max_length=100)
+    coursename=models.CharField(max_length=50,null=True,blank=True)
+    teachername=models.CharField(max_length=50,null=True,blank=True)
+    teacherphonenumber=models.CharField(max_length=50,null=True,blank=True)
+    content=models.CharField(max_length=100,null=True,blank=True)
+    #img=models.ImageField(default="static/image/personalclass.png")
+    # def __str__(self):
+    #     return self.departmentcours
+    def __str__(self):
+        return self.coursename   
+
+
+
+class PrivateElectricClasses(models.Model):
+
+    #departmentcours= models.CharField(max_length=100)
+    coursename=models.CharField(max_length=50,null=True,blank=True)
+    teachername=models.CharField(max_length=50,null=True,blank=True)
+    teacherphonenumber=models.CharField(max_length=50,null=True,blank=True)
+    content=models.CharField(max_length=100,null=True,blank=True)
+    #img=models.ImageField(default="static/image/personalclass.png")
+    # def __str__(self):
+    #     return self.departmentcours
+
+
+
+
+class PrivateMechanicalClasses(models.Model):
+
+    #departmentcours= models.CharField(max_length=100)
+    coursename=models.CharField(max_length=50,null=True,blank=True)
+    teachername=models.CharField(max_length=50,null=True,blank=True)
+    teacherphonenumber=models.CharField(max_length=50,null=True,blank=True)
+    content=models.CharField(max_length=100,null=True,blank=True)
+    #img=models.ImageField(default="static/image/personalclass.png")
+    # def __str__(self):
+    #     return self.departmentcours
+
+
+
+
+
+
+
+class PrivateChemicalClasses(models.Model):
+
+   # departmentcours= models.CharField(max_length=100)
+    coursename=models.CharField(max_length=50,null=True,blank=True)
+    teachername=models.CharField(max_length=50,null=True,blank=True)
+    teacherphonenumber=models.CharField(max_length=50,null=True,blank=True)
+    content=models.CharField(max_length=100,null=True,blank=True)
+    #img=models.ImageField(default="static/image/personalclass.png")
+    # def __str__(self):
+    #      return self.departmentcours
 
