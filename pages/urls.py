@@ -32,7 +32,16 @@ urlpatterns = [
     path('ADDING.html',views.ADDING,name='ADDING'),
     path('wichlogin.html',views.wichlogin,name='wichlogin'),
     path('signorlog.html',views.signorlog,name='signorlog'),
-
+ path('admincivil.html',views.admincivil,name='admincivil'),
+        path('adminchemical.html',views.adminchemical,name='adminchemical'),
+         path('adminelectrical.html',views.adminelectrical,name='adminelectrical'),
+          path('adminmechanical.html',views.adminmechanical,name='adminmechanical'),
+            path('updatesoftwar.html/<str:pk>',views.updatesoftwar,name='updatesoftwar'),
+             path('updatecivil.html/<str:pk>',views.updatecivil,name='updatecivil'),
+             path('updateelectric.html/<str:pk>',views.updateelectric,name='updateelectric'),
+             path('updatechemical.html/<str:pk>',views.updatechemical,name='updatechemical'),
+         
+      
     # path('adminapartments.html',views.adminapartments,name='adminapartments'),
     # path('forstudentsusers.html',views.forstudentsusers,name='forstudentsusers'),
     # path('departmentcourses.html',views.departmentcourses,name='departmentcourses'),
