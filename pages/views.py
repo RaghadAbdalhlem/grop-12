@@ -329,3 +329,27 @@ def updatesoftwar(request,pk):
          form.save()
          return redirect('adminsoftwar')
      return render (request,'pages/updatesoftwar.html',{'form':form})
+
+def more(request):
+    return render(request,'more.html')
+
+
+def update_student():
+     pass
+
+def SignUpStudents(request):
+    if request.method == "POST":
+        Username = request.POST.get('Username')
+        Email = request.POST.get('Email')
+        Password = request.POST.get('Password')
+        Re_Password = request.POST.get('Re_Password')
+        # Call the SignUp function with the correct arguments
+        new_SignUp = SignUp(Username=Username, Email=Email, Password=Password, Re_Password=Re_Password)
+        #data= SignUp(Username=Username, Email=Email, Password1=Password1, RE_Password=RE_Password)
+        # data.save();
+        new_SignUp.save()
+
+        return render(request,'pages\SignUpStudent.html')
+    else:
+            # Handle GET request
+        return render(request, 'pages\SignUpUser.html')
