@@ -1,153 +1,274 @@
-from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
-# Create your models here.
+from django.shortcuts import render ,redirect
+from django . contrib.auth.forms import UserCreationForm
+
+
+#from .forms import ProfileForm
+from django.contrib import messages
+#from .models import UploadFile
+from django.http import HttpResponse
+from django.contrib.auth import authenticate
+from .models import SignUp
+from .models import Apartments
+from .forms import SignUpForm
+from .forms import addApartmentform
+
+def masterpage(request):
+    return render(request,'masterpage.html')
+def more(request):
+    return render(request,'more.html')
+    
+
+
+def SignUpAdmin(request):
+     form=SignUpForm
+     username=request.POST.get('Username')
+     email=request.POST.get('Email')
+     password=request.POST.get('Password')
+     re_Password=request.POST.get('Re_Password')
+     data=SignUp(Username=username,Email=email,Password=password,Re_Password=re_Password)
+     data.save()
+     conaxt=fo
+     return render(request,'pages/SignUpAdmin.html',{'SignUpForm':SignUpForm})
+
+def Logiadmin(request):
+    if request.method == 'POST':
+        Username = request.POST.get('username')
+        Password = request.POST.get('password')
+        user = authenticate(request, username=Username, password=Password)
+        if user is not None:
+            users_in_group = Group.objects.get(name='Admin').user_set.all()
+            if user in users_in_group:
+                login(request, user)
+                return redirect('foradmin')
+            else:
+                messages.info(request, 'username OR password incorrert')
+        else:
+            messages.info(request, 'username OR password incorrert')
+    context = {}
+    return render(request, 'pages/Loginadmin.html', context)
+       
+def update_student():
+     pass
+
+def SignUpStudents(request):
+    if request.method == "POST":
+        Username = request.POST.get('Username')
+        Email = request.POST.get('Email')
+        Password = request.POST.get('Password')
+        Re_Password = request.POST.get('Re_Password')
+        # Call the SignUp function with the correct arguments
+        new_SignUp = SignUp(Username=Username, Email=Email, Password=Password, Re_Password=Re_Password)
+        #data= SignUp(Username=Username, Email=Email, Password1=Password1, RE_Password=RE_Password)
+        # data.save();
+        new_SignUp.save()
+
+        return render(request,'pages\SignUpStudent.html')
+    else:
+            # Handle GET request
+        return render(request, 'pages\SignUpUser.html')
 
 
 
 
+def SignUpUser(request):
+    #if request.method == 'POST':
+        Username = request.POST.get('Username')
+        Email = request.POST.get('Email')
+        Password = request.POST.get('Password')
+        Re_Password = request.POST.get('Re_Password')
+        # Call the SignUp function with the correct arguments
+        new_SignUp = SignUp.objects.create(Username=Username, Email=Email, Password=Password, Re_Password=Re_Password)
+        #data= SignUp(Username=Username, Email=Email, Password1=Password1, RE_Password=RE_Password)
+        #data.save();
+        new_SignUp.save()
+
+        return render(request,'pages\SignUpUser.html',{'SignUp':new_SignUp})
+    #else:
+            # Handle GET request
+        #return render(request, 'pages\SignUpUser.html')
+    
 
 
 
-class SignUp(models.Model):
+
+def ToSignUp(request):
+    return render(request,'pages\ToSignUp.html')
 
 
-    Username=models.CharField(max_length=100,null=True,blank=True)
-    Email=models.CharField(max_length=100,null=True,blank=True)
-    Password=models.CharField(max_length=100,null=True,blank=True)
-    Re_Password=models.CharField(max_length=100,null=True,blank=True)
+def choose(request):
+     return render(request,'pages\choose.html')
 
 
-    def __str__(self):
-         return self.Username
+def apartments (request):
+     apart=Apartments.objects.all()
+     return render(request,'pages/apartments.html',{'apartments':apartments})
+
+
+def oneapartment(request):
+     return render(request,'pages\oneapartment.html')
+
+def privateclass(request):
+     return render(request,'pages/privateclass.html')
+def aboutus(request):
+    return render(request,'pages/aboutus.html')
+
+
+def addapartment(request):
+     form=addApartmentform()
+     if request.method=='POST':
+          form=addApartmentform(request.POST)
+          if form.is_valid():
+               form.save()
+               return redirect('addclasses')
    
-    
-class Area(models.Model):
-    area=models.CharField(max_length=100)
-    def __str__(self):
-        return self.area
+     conaxt={'form':form}
+     return render(request,'pages/addapartment.html',conaxt)
+ 
+def scolarshipswith(request):
+     soft=scholarship.objects.all()
+     return render(request,'pages/scolarshipswith.html',{'soft':soft})
 
-# Create your models here.
-class Apartments(models.Model):
-    id = models.AutoField(primary_key=True)
-    price=models.IntegerField(
-        default=1000,
-        validators=[MaxValueValidator(5000), MinValueValidator(1000)])
-    rooms=models.IntegerField(
-        default=1,
-        validators=[MaxValueValidator(5), MinValueValidator(1)])
-    area=models.CharField(max_length=100)
-    content=models.TextField(null=False)
-   # img=models.ImageField(upload_to=('static/image/'))
-    phonenumber=models.CharField(max_length=10,null=True)
-    # def __str__(self):
-    #     return self.area
-    class Meta:
-        verbose_name='Apartment'
-
-
+def SignUpUser(request):
+    form = CreatUserForm()
+    if request.method == 'POST':
+        form = CreatUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            try:
+              group =  Group.objects.get(name='Users')
+            except ObjectDoesNotExist:
+                group=None
+            user.groups.add(group)
+            messages.success(request, 'Account was created for ' + username)
+            return redirect('Loginuser')
+    context = {'form': form}
+    return render(request, 'pages/SignUpUser.html', context)
 
 
+def Loginuser(request):
+    if request.method == 'POST':
+        Username = request.POST.get('username')
+        Password = request.POST.get('password')
+        user = authenticate(request, username=Username, password=Password)
+        if user is not None:
+            users_in_group = Group.objects.get(name='Users').user_set.all()
+            if user in users_in_group:
+                login(request, user)
+                return redirect('forusers')
+            else:
+                messages.info(request, 'username OR password incorrert')
+        else:
+            messages.info(request, 'username OR password incorrert')
+    context = {}
+    return render(request, 'pages/Loginuser.html', context)
 
-class CatigoryClasses(models.Model):
-    name=models.CharField(max_length=100)
-    def __str__(self):
-        return self.name
+# def SignUpAdmin(request):
+#      form=SignUpForm()
+#      # username=request.POST.get('Username')
+#      # email=request.POST.get('Email')
+#      # password=request.POST.get('Password')
+#      # re_Password=request.POST.get('Re_Password')
+#      if request.method=='POST':
+#           form=SignUpForm(request.POST)
 
-
-
-
-
-class PrivateClasses(models.Model):
-    #  CATEGORY = (
-    #     ('Softwar-Engineering', 'Softwar-Engineering'),
-    #     ('Civil-Engineering', 'Civil-Engineering'), ('Chemical-Engineering', 'Chemical-Engineering'),
-    #     ('Electric-Engineering', 'Electric-Engineering'),
-    #     ('Mechanical-Engineering', 'Mechanical-Engineering')
-
-    #    )
-                        
-    #  departmentcours=models.CharField(max_length=200, null=True, choices=CATEGORY)
-     coursename=models.CharField(max_length=50,null=True,blank=True)
-     teachername=models.CharField(max_length=50,null=True,blank=True)
-     teacherphonenumber=models.CharField(max_length=50,null=True,blank=True)
-     content=models.CharField(max_length=100,null=True,blank=True)
-        #img=models.ImageField(default="static/image/personalclass.png")
-     def __str__(self):
-        return self.coursename   
-    
-
-
-
-    
-class PrivateCivilClasses(models.Model):
-
-    #departmentcours= models.CharField(max_length=100)
-    coursename=models.CharField(max_length=50,null=True,blank=True)
-    teachername=models.CharField(max_length=50,null=True,blank=True)
-    teacherphonenumber=models.CharField(max_length=50,null=True,blank=True)
-    content=models.CharField(max_length=100,null=True,blank=True)
-    #img=models.ImageField(default="static/image/personalclass.png")
-    # def __str__(self):
-    #     return self.departmentcours
-    def __str__(self):
-        return self.coursename   
+#           if form.is_valid():
+#                form.save()
+#                return redirect('SignUpStudent')
+#     # data=SignUp(Username=username,Email=email,Password=password,Re_Password=re_Password)
+#      #data.save()
+#      conaxt={'form':form}
+#      return render(request,'pages/SignUpAdmin.html',conaxt)
 
 
 
-class PrivateElectricClasses(models.Model):
+# def SignUpUser(request):
+#      form=SignUpForm()
+  
+#      if request.method=='POST':
+#           form=SignUpForm(request.POST)
 
-    #departmentcours= models.CharField(max_length=100)
-    coursename=models.CharField(max_length=50,null=True,blank=True)
-    teachername=models.CharField(max_length=50,null=True,blank=True)
-    teacherphonenumber=models.CharField(max_length=50,null=True,blank=True)
-    content=models.CharField(max_length=100,null=True,blank=True)
-    #img=models.ImageField(default="static/image/personalclass.png")
-    # def __str__(self):
-    #     return self.departmentcours
+#           if form.is_valid():
+#                form.save()
+#                return redirect('SignUpStudent')
+   
+#      conaxt={'form':form}
+#      return render(request,'pages/SignUpUser.html',conaxt)
 
+#         if request.method == 'POST':
+#           coursename=request.POST['coursename']
+#           teachername=request.POST['teachername']
+#           techerphonenumber=request.POST['teacherphonenumber']
+#           content=request.POST['content']
+              	
+        
 
+#           new= addsoftwarclasses(coursename=coursename,teachername=teachername,techerphonenumber=techerphonenumber,content=content)   
+#           new.save()   
+# ################################################
+#      submitted = False
+#      if request.method == "POST":
+#               form=addsoftwarclasses(request.POST)
+#               if form.is_valid():
+#                    form.save()
+#                    return HttpResponseRedirect('pages/addsoftwarclasses?submitted=True')
+#      else:
+#              form =addsoftwarclasses 
+#              if 'submitted' in request.GET:
+#                    submitted=True
+#      return render(request, 'pages/addsoftwarclasses.html',{'form':form,'submitted':submitted})
+#      #####################################
 
-
-class PrivateMechanicalClasses(models.Model):
-
-    #departmentcours= models.CharField(max_length=100)
-    coursename=models.CharField(max_length=50,null=True,blank=True)
-    teachername=models.CharField(max_length=50,null=True,blank=True)
-    teacherphonenumber=models.CharField(max_length=50,null=True,blank=True)
-    content=models.CharField(max_length=100,null=True,blank=True)
-    #img=models.ImageField(default="static/image/personalclass.png")
-    # def __str__(self):
-    #     return self.departmentcours
-
-
-
-
-
-
-
-class PrivateChemicalClasses(models.Model):
-
-   # departmentcours= models.CharField(max_length=100)
-    coursename=models.CharField(max_length=50,null=True,blank=True)
-    teachername=models.CharField(max_length=50,null=True,blank=True)
-    teacherphonenumber=models.CharField(max_length=50,null=True,blank=True)
-    content=models.CharField(max_length=100,null=True,blank=True)
-    #img=models.ImageField(default="static/image/personalclass.png")
-    # def __str__(self):
-    #      return self.departmentcours
-
-
-
-
-class Catigory(models.Model):
-    name=models.CharField(max_length=100)
-    def __str__(self):
-        return self.name
-    
+ 
+def showscholarships(request):
+     # soft=scholarship.objects.all()
+     #,{'soft':soft}
+     return render(request,'pages/showscholarships.html')
 
 
-class scholarship(models.Model):
-    id = models.AutoField(primary_key=True)
-    category=models.ForeignKey(Catigory,on_delete=models.CASCADE,default=True,null=False)
-    contant=models.CharField(max_length=1000)
-    phonenumber=models.CharField(max_length=10,null=True)
+def scholarshipswith(request):
+      soft=scholarship.objects.all()
+     
+      return render(request,'pages/scholarshipswith.html',{'soft':soft})
+
+def scholarshipswithout(request):
+     soft=scholarship.objects.all()
+     return render(request,'pages/scholarshipswithout.html',{'soft':soft})
+
+
+def apartmentarea(request):
+
+
+
+  if request.method=="POST":
+       searched=request.POST['searched']
+       apart=Apartments.objects.filter(area=searched)
+
+       #apart=Apartments.objects.all()
+       return render(request,'pages/apartmentarea.html',{'searched':searched,'apart':apart})
+  else:
+        return render(request, 'pages/apartmentarea.html')
+
+
+
+def apartmentsprice (request):
+
+      if request.method=="POST":
+       searched=request.POST['searched']
+       apart=Apartments.objects.filter(price=searched)
+
+       #apart=Apartments.objects.all()
+       return render(request,'pages/apartmentsprice.html',{'searched':searched,'apart':apart})
+      else:
+        return render(request, 'pages/apartmentsprice.html')
+def apartmentsroom (request):
+
+      if request.method=="POST":
+       searched=request.POST['searched']
+       apart=Apartments.objects.filter(rooms=searched)
+
+       #apart=Apartments.objects.all()
+       return render(request,'pages/apartmentsroom.html',{'searched':searched,'apart':apart})
+      else:
+        return render(request, 'pages/apartmentsroom.html')
+      
