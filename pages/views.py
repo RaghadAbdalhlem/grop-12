@@ -11,19 +11,6 @@ from .models import SignUp
 from .models import Apartments
 from .forms import SignUpForm
 from .forms import addApartmentform
-from django.shortcuts import redirect
-from .forms import addclassesform,addelectricclassesform,addcivilclassesform,addchemicalclassesform,addscholarshipform,addmechanicalclassesform,addApartmentform,addscholarshipform,updateApartmentform,updatescholarshipform,updatesoftwarform,updatecivilform,updateelectricform,updatechemicalform,updatemechanicalform
-from .models import PrivateMechanicalClasses,PrivateCivilClasses,PrivateChemicalClasses,PrivateElectricClasses,PrivateClasses,scholarship
-from .filters import PrivateClassesFilter
-from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.models import Group
-from django.contrib.auth import logout,login
-from django.contrib.auth.forms import UserCreationForm
-from .models import SignUp
-from .forms import CreatUserForm
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from django.contrib import messages
 
 def masterpage(request):
     return render(request,'masterpage.html')
@@ -31,22 +18,6 @@ def more(request):
     return render(request,'more.html')
     
 
-def SignUpUser(request):
-    #if request.method == 'POST':
-        Username = request.POST.get('Username')
-        Email = request.POST.get('Email')
-        Password = request.POST.get('Password')
-        Re_Password = request.POST.get('Re_Password')
-        # Call the SignUp function with the correct arguments
-        new_SignUp = SignUp.objects.create(Username=Username, Email=Email, Password=Password, Re_Password=Re_Password)
-        #data= SignUp(Username=Username, Email=Email, Password1=Password1, RE_Password=RE_Password)
-        #data.save();
-        new_SignUp.save()
-
-        return render(request,'pages\SignUpUser.html',{'SignUp':new_SignUp})
-    #else:
-            # Handle GET request
-        #return render(request, 'pages\SignUpUser.html')
 
 def SignUpAdmin(request):
      form=SignUpForm
@@ -300,56 +271,4 @@ def apartmentsroom (request):
        return render(request,'pages/apartmentsroom.html',{'searched':searched,'apart':apart})
       else:
         return render(request, 'pages/apartmentsroom.html')
-
-
-def updateapartment(request,pk):
-     apartment=Apartments.objects.get(id=pk)
-     form= updateApartmentform(request.POST or None , instance=apartment )
-     if form.is_valid():
-         form.save()
-         return redirect('adminapartments')
-     return render (request,'pages/updateapartment.html',{'form':form})
-
-
-def updatescholarship(request,pk):
-     scho=scholarship.objects.get(id=pk)
-     form= updatescholarshipform(request.POST  , instance=scho )
-
-     if form.is_valid():
-         form.save()
-         return redirect('adminscholarship')
-     return render (request,'pages/updatescholarship.html',{'form':form})
-
-
-def updatesoftwar(request,pk):
-     scho=PrivateClasses.objects.get(id=pk)
-     form= updatesoftwarform(request.POST or None  , instance=scho )
-
-     if form.is_valid():
-         form.save()
-         return redirect('adminsoftwar')
-     return render (request,'pages/updatesoftwar.html',{'form':form})
-
-def more(request):
-    return render(request,'more.html')
-
-
-def update_student():
-     pass
-
-def SignUpStudents(request):
-    if request.method == "POST":
-        Username = request.POST.get('Username')
-        Email = request.POST.get('Email')
-        Password = request.POST.get('Password')
-        Re_Password = request.POST.get('Re_Password')
-        # Call the SignUp function with the correct arguments
-        new_SignUp = SignUp(Username=Username, Email=Email, Password=Password, Re_Password=Re_Password)
-        #data= SignUp(Username=Username, Email=Email, Password1=Password1, RE_Password=RE_Password)
-        # data.save();
-        new_SignUp.save()
-
-        return render(request,'pages\SignUpStudent.html')
-    else:
-            # Handle GET request
-        return render(request, 'pages\SignUpUser.html')
+      
