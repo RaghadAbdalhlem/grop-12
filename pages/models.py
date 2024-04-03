@@ -151,3 +151,4 @@ class scholarship(models.Model):
     category=models.ForeignKey(Catigory,on_delete=models.CASCADE,default=True,null=False)
     contant=models.CharField(max_length=1000)
     phonenumber=models.CharField(max_length=10,null=True)
+

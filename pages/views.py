@@ -28,8 +28,12 @@ from django.contrib.auth.models import Group
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import addApartmentform,addscholarshipform,updateApartmentform,updatescholarshipform,updatesoftwarform,updatecivilform,updateelectricform,updatechemicalform
 
+
 def masterpage(request):
     return render(request,'masterpage.html')
+def more(request):
+    return render(request,'more.html')
+    
 
 
 
@@ -52,6 +56,7 @@ def SignUpUser(request):
 
 
 def Loginuser(request):
+
     if request.method == 'POST':
         Username = request.POST.get('username')
         Password = request.POST.get('password')
@@ -61,6 +66,7 @@ def Loginuser(request):
             if user in users_in_group:
                 login(request, user)
                 return redirect('forusers')
+
             else:
                 messages.info(request, 'username OR password incorrert')
         else:
@@ -101,6 +107,7 @@ def logoutAdmin(request):
      logout(request)
      
            
+
 
 
 def SignUpStudent(request):
@@ -440,6 +447,7 @@ def forusers(request):
 def ADDING(request):
      return render(request,'pages/ADDING.html')
 
+
 def showscholarships(request):
      # soft=scholarship.objects.all()
      #,{'soft':soft}
@@ -454,6 +462,7 @@ def scholarshipswith(request):
 def scholarshipswithout(request):
      soft=scholarship.objects.all()
      return render(request,'pages/scholarshipswithout.html',{'soft':soft})
+
 
 
 

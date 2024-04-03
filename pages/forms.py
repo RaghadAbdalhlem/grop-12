@@ -39,7 +39,7 @@ class SignUpForm(ModelForm):
      #Re_Password=forms.CharField(max_length=100)
         
 
-    #def __str__(self):
+    #def _str_(self):
        # return self.Username
 
 
@@ -134,3 +134,4 @@ class CreatUserForm(UserCreationForm):
         fields = ['first_name','last_name','email','username','password1','password2']
         
    
+

@@ -1,6 +1,5 @@
 
 
-
 # tests.py
 
 # from django.test import TestCase
@@ -360,6 +359,7 @@ class UserTestCase(TestCase):
         url = reverse('Logoutuser')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
+
 
 
 
