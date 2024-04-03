@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 {% extends "masterpage.html" %}
@@ -20,16 +21,17 @@
 	 <h1>ADD AN APARTMENT</h1>
 
 	 {% csrf_token %}
-	 <p>APARTMENT PRICE </p>
+	 <p style="color: white">APARTMENT PRICE </p>
 	 {{form.price}}
-	 <p>ROOMS NUMBER IN APARTMENT</p>                
+	 <p style="color: white">ROOMS NUMBER IN APARTMENT</p>                
 	 {{form.rooms}}
-	 <p>APARTMENT'S AREA</p>
+	 <p style="color: white">APARTMENT'S AREA</p>
 	 {{form.area}}
-	 <p>CONTENT</p>
+	 <p style="color: white">CONTENT</p>
 	 {{form.content}}
      
-     <p>PHONE NUMBER</p>
+     <p style="color: white">PHONE NUMBER</p>
+
 	 {{form.phonenumber}} 
 
 
